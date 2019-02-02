@@ -226,12 +226,15 @@ def adddepartment(university_id):
                 newItem = Department(name=request.form['name'],
                                      university_id=university_id,
                                      user_id=login_session['user_id'])
-            user_ID = login_session['user_id']
-            session.add(newItem)
-            session.commit()
-            flash("Department has been added successfully")
-            return redirect(url_for('listofdepartments',
-                                    university_id=university_id))
+                user_ID = login_session['user_id']
+                session.add(newItem)
+                session.commit()
+                flash("Department has been added successfully")
+                return redirect(url_for('listofdepartments',
+                                        university_id=university_id))
+            else:
+                return render_template('adddepartment.html',
+                                       university_id=university_id)
         else:
             flash("permission denied due to invalid user")
             return redirect(url_for('listofdepartments',
@@ -285,13 +288,13 @@ def deletedepartment(university_id, department_id):
             if request.method == 'POST':
                 session.delete(itemToDelete)
                 session.commit()
-                flash("Department has been"
+                flash("Department has been "
                       "deleted successfully")
                 return redirect(url_for('listofdepartments',
                                         university_id=university_id
                                         ))
             else:
-                return render_template('deletedepartment.html',
+                return render_template('deletedepartments.html',
                                        i=itemToDelete)
         else:
             flash('permission denied due to invalid user')
@@ -316,14 +319,14 @@ def listofuniversities():
 @login_required
 def newUniversity():
     if request.method == 'POST':
-                newItem = University(name=request.form['name'],
+        newItem = University(name=request.form['name'],
                                      user_id=login_session[
                                                             'user_id'])
-                user_id = login_session['user_id']
-                session.add(newItem)
-                session.commit()
-                flash("University has been added successfully")
-                return redirect(url_for('listofuniversities'))
+        user_id = login_session['user_id']
+        session.add(newItem)
+        session.commit()
+        flash("University has been added successfully")
+        return redirect(url_for('listofuniversities'))
     else:
         return render_template('newUniversity.html')
 
