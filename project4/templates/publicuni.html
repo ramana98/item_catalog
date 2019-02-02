@@ -1,0 +1,40 @@
+<html>
+<head>
+	<link rel=stylesheet type=text/css href="{{url_for('static',filename="style.css")}}">
+
+		</head>
+<body>
+
+<h1 align="center">University Dashboard</h1>
+<hr>
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li> <strong> {{ message }}</strong> </li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+</br>
+</br>
+<a class="cancel"href="{{url_for('showLogin')}}">Login</a>
+</br>
+</br>
+
+
+<{% for i in items %}
+<div class="universitylist">
+
+<a class="ref" href="{{url_for('index1',university_id=i.id)}}">
+{{i.name}}
+</a>
+<br>
+</div>
+{% endfor %}
+
+
+</body>
+</html>

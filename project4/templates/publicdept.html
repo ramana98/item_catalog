@@ -1,0 +1,37 @@
+<html>
+<head>
+		<link rel=stylesheet type=text/css href="{{url_for('static',filename="style.css")}}">
+		</head>
+<body>
+	
+<h1 align="center">{{university.name}}</h1>
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li> <strong> {{ message }}</strong> </li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+
+</br>
+{% for i in items %}
+<div class="departmentlist">
+
+{{i.name}}
+</br>
+{{i.dhod}}
+</br>
+</div>
+{% endfor %}
+
+<br>
+
+
+<a class="cancel"href="{{url_for('index')}}">Cancel</a>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+		<link rel=stylesheet type=text/css href="{{url_for('static',filename="style.css")}}">
+		</head>
+<body>
+	
+<h1 align="center">{{university.name}}</h1>
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li> <strong> {{ message }}</strong> </li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+
+<a class="addepartment"href='{{url_for('adddepartment',university_id=university.id)}}'>Add new department</a>
+</br>
+</br>
+{% for i in items %}
+<div class="departmentlist">
+
+{{i.name}}
+</br>
+{{i.dhod}}
+</br>
+<a class="ref"href='{{url_for('editdepartment',university_id=university.id,department_id=i.id)}}'>Edit</a>
+</br>
+<a class="ref"href='{{url_for('deletedepartment',university_id=university.id,department_id=i.id)}}'>Delete</a>
+</br>
+</br>
+</div>
+{% endfor %}
+<br>
+<a class="cancel"href="{{url_for('listofuniversities')}}">Cancel</a>
+</body>
+</html>

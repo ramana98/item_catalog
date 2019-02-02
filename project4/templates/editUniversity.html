@@ -1,0 +1,18 @@
+<html>
+<head>
+		<link rel=stylesheet type=text/css href="{{url_for('static',filename="style.css")}}">
+		</head>
+<body>
+	<h1 align="center"> Enter that you want to edit !</h1>
+	<div class="main">
+	<form action="{{ url_for('editUniversity',id=i.id,) }}" method="post">
+		<p> Enter Name: </p>
+		<input type="text" size="30" name="name" placeholder="{{i.name}}">
+		<input type="submit" value="Edit">
+		<br>
+		<br>
+		<a class="ref" href="{{url_for('listofuniversities',id=id)}}"> Cancel</a>
+	</form>
+</div>
+</body>
+</html>
